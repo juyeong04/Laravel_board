@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes; //! softdelete
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes; //! softdelete
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +29,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
+    protected $hidden = [ // 두 항목 숨기고(빼고) 제이슨으로 만들겠다
         'password',
         'remember_token',
     ];
@@ -41,4 +42,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $dates = ['deleted_at']; //! softdelete 쓸려면 model에 추가해줘야함!!!
 }

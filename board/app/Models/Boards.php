@@ -13,5 +13,5 @@ class Boards extends Model
 
     protected $guarded = ['id', 'created_at']; // blacklist
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at']; //! softdelete 사용해줄 때 추가해주기
 }
