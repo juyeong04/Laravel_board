@@ -21,8 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// board
 Route::resource('/boards', BoardsController::class);
+
+// user
 Route::get('/users/login', [UserController::class, 'login'])->name('users.login');
 Route::post('/users/loginpost', [UserController::class, 'loginpost'])->name('users.login.post');
 Route::get('/users/registration', [UserController::class, 'registration'])->name('users.registration');
 Route::post('/users/registrationpost', [UserController::class, 'registrationpost'])->name('users.registration.post');
+Route::get('/users/logout', [UserController::class, 'logout'])->name('users.logout');
+Route::get('/users/withdraw', [UserController::class, 'withdraw'])->name('users.withdraw');
+Route::get('/users/edit', [UserController::class, 'useredit'])->name('users.edit');
+Route::post('/users/editpost', [UserController::class, 'usereditpost'])->name('users.edit.post');

@@ -29,6 +29,11 @@ class BoardsController extends Controller
      */
     public function index()
     {
+        // 로그인 체크(로그인 상태면 false)
+        if(auth()->guest()) {
+            return redirect()->route('users.login'); // 로그인 안하면 board 페이지 못넘어가게 함
+        }
+
         // $result = Boards::all(); ==> 다 불러오는것 보다 필요한거 불러오는게 더 효율적!
         $result = Boards::select(['id', 'title', 'hits', 'created_at', 'updated_at'])
                 ->orderBy('hits', 'desc')
