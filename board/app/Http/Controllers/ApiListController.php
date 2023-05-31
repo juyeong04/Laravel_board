@@ -32,6 +32,6 @@ class ApiListController extends Controller
     }
 
     function putlist($id) {
-
+        // 배열로 만들어서 바꿔야하나...?
     }
 }
