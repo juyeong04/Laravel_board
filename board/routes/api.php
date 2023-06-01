@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/list/{id}', [ApiListController::class, 'getlist']);
 Route::post('/list', [ApiListController::class, 'postlist']);
 Route::put('/list/{id}', [ApiListController::class, 'putlist']);
+Route::delete('/list/{id}', [ApiListController::class, 'deletelist']);
