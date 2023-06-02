@@ -134,7 +134,7 @@ class BoardsController extends Controller
                 ,'id' => 'required|integer' // v002 add //! numeric은 완전 숫자만, integer는 문자형이더라도 정수값을 가지는지 확인함
             ]); //==> 에러나면 바로 리턴, 리다이렉트
 
-        //! 유효성 검사 방법 2
+        //! 유효성 검사 방법 2 : 이걸 더 많이 씀!
             // $validator = Validator::make(
             //     $request->only('id', 'title', 'content')
             //     , [
