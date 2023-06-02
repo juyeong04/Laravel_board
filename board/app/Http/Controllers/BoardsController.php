@@ -127,14 +127,14 @@ class BoardsController extends Controller
         // v002 add end
 
 
-        // 유효성 검사 방법 1
+        //! 유효성 검사 방법 1
             $request->validate([
                 'title' => 'required|between:3,30'
                 ,'content' => 'required|max:2000'
                 ,'id' => 'required|integer' // v002 add //! numeric은 완전 숫자만, integer는 문자형이더라도 정수값을 가지는지 확인함
             ]); //==> 에러나면 바로 리턴, 리다이렉트
 
-        // 유효성 검사 방법 2
+        //! 유효성 검사 방법 2
             // $validator = Validator::make(
             //     $request->only('id', 'title', 'content')
             //     , [

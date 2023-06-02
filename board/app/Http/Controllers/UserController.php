@@ -13,14 +13,32 @@ use Illuminate\Support\Facades\Hash; // 비밀번호 해쉬화
 use Illuminate\Support\Facades\Auth; // 유저 인증 작업
 use Illuminate\Support\Facades\Session; // 세션
 use App\Models\User; //유저 정보 습득
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     function login() {
+
+        //로그 우선순위
+        $arr['key'] = 'test';
+        
+        $arr['kim'] = 'park'; // 에러생성
+
+        Log::emergency('emergency', $arr);
+        Log::alert('alert', $arr);
+        Log::critical('critical', $arr);
+        Log::error('error', $arr);
+        Log::warning('warning', $arr);
+        Log::notice('notice', $arr);
+        Log::info('info', $arr);
+        Log::debug('debug', $arr);
+
+
         return view('login');
     }
 
     function loginpost(Request $req) {
+        Log::debug('로그인 시작'); //! 확인하고 싶은곳에 넣어서 어디서 에러났는지 확인할 수 있음!
         $req->validate([
             'email' => 'required|email|max:100'
             ,'password' => 'regex:/^(?=.*[A-Za-z])(?=.*[@$!%*#-^])(?=.*[0-9]).{8,20}$/'
@@ -43,10 +61,10 @@ class UserController extends Controller
         if(Auth::check()) {
             // session에 올릴 수 있는 거는 아무 의미 없는 pk
             session($user->only('id')); // 세션에 인증된 회원pk 등록
-            return redirect()->intended(route('boards.index')); // 필요없는 정보들 날려주면서 redirect 해줌
+            return redirect()->intended(route('boards.index')); // 유저 인증하고 성공했을 때 리다이렉트 할때 intended 넣는다!, 필요없는 정보들 날려주면서 redirect 해줌
         }
         else {
-            $error = '인증작업 에러';//?????????????????????????
+            $error = '인증작업 에러';
             return redirect()->back()->with('error', $error); 
         }
     }
